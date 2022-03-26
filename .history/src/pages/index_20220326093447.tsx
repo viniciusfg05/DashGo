@@ -1,7 +1,6 @@
-import { Button, Flex, Stack, FormLabel, FormControl} from "@chakra-ui/react";
-import { Input } from "../components/Form/Input";
+import { Button, Flex, Input, Stack, FormLabel, FormControl} from "@chakra-ui/react";
 
-export default function SingIn() {
+export default function Home() {
   return (
     <Flex
       w="100vw"
@@ -21,8 +20,7 @@ export default function SingIn() {
         
         <Stack spacing={4}> 
 
-          <Input name="email" type="email" label="E-mail" />
-          <Input name="password" type="password" label="Senha" />
+          <Input name="email" type="email" label="E-mail"/>
 
         </Stack>
 
