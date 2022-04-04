@@ -1,14 +1,45 @@
-import { Box, Flex, SimpleGrid,Text } from "@chakra-ui/react";
+import { Box, Flex, SimpleGrid,Text, theme } from "@chakra-ui/react";
 import { Header } from "../components/Header";
 import SideBar from "../components/Sidebar";
 import dynamic from "next/dynamic";
 
+// faz com que o Chart seja carregado apenas pelo lado do browser e evitar o erro window
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 })
 
 const options = {
+  chart: {
+    toolbar: {
+      show: false,
+    },
+    zoom: {
+      enabled: false,
+    },
+    foreColor: theme.colors.gray[500]
+  },
+  grid: {
+    show: false,
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  tooltip: {
+    enabled: false,
+  },
+  xaxis: {
+    type: "datetime",
+    axisBorder: {
+      color: theme.colors.gray[600]
+    },
+    axisTicks: {
+      color: theme.colors.gray[600]
+    },
+    categories: [
+      '18/03/2022',
 
+    ]
+  }
 }
 
 const series = [
