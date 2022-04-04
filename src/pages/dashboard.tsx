@@ -3,12 +3,14 @@ import { Header } from "../components/Header";
 import SideBar from "../components/Sidebar";
 import dynamic from "next/dynamic";
 
+import { ApexOptions } from 'apexcharts';
+
 // faz com que o Chart seja carregado apenas pelo lado do browser e evitar o erro window
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 })
 
-const options = {
+const options : ApexOptions = {
   chart: {
     toolbar: {
       show: false,
@@ -36,9 +38,22 @@ const options = {
       color: theme.colors.gray[600]
     },
     categories: [
-      '18/03/2022',
-
+      "2021-03-18T00:00:00.000Z",
+      "2021-03-20T00:00:00.000Z",
+      "2021-03-22T00:00:00.000Z",
+      "2021-03-24T00:00:00.000Z",
+      "2021-03-25T00:00:00.000Z",
+      "2021-03-27T00:00:00.000Z",
     ]
+  },
+  fill: {
+    opacity: 0.3,
+    type: "gradient",
+    gradient: {
+      shade: 'dark',
+      opacityFrom: 0.7,
+      opacityTo: 0.3,
+    }
   }
 }
 
@@ -50,7 +65,7 @@ export default function Dashboard() {
     <Flex direction="column" h="100vh">
       <Header />
 
-      <Flex w="100%" my="6" maxWidth={1080} mx="auto" px="6">
+      <Flex w="100%" my="6" maxWidth={1200} mx="auto" px="6">
         <SideBar/>
 
         <SimpleGrid flex="1" gap="4" minChildWidth="320px" alignItems="flex-start">
@@ -58,6 +73,8 @@ export default function Dashboard() {
             p="8"
             bg="gray.800"
             borderRadius={8}
+            
+            
           >
             <Text fontSize="lg" mb="4">
               Inscritos da Semana
@@ -79,6 +96,13 @@ export default function Dashboard() {
             <Text fontSize="lg" mb="4">
               Taxa de abertura 
             </Text>
+
+            <Chart 
+              type="area"
+              height={160}
+              series={series}
+              options={options}
+            />
 
           </Box>
         </SimpleGrid>
