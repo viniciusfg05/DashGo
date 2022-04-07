@@ -1,6 +1,7 @@
 import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Tbody, Td, Th, Thead, Tr, Text } from "@chakra-ui/react";
-import { RiAddLine } from "react-icons/ri";
-import { Header } from "../../components/Header";
+import { RiAddLine, RiPencilLine } from "react-icons/ri";
+import { Header } from "../../components/Header/Index";
+import { Pagination } from "../../components/Pagination";
 import SideBar from "../../components/Sidebar";
 
 export default function UserList() {
@@ -16,7 +17,7 @@ export default function UserList() {
                         <Heading size="lg" fontWeight="normal">Usuários</Heading>
 
                         <Button as="a" size="sn" fontSize="sn" colorScheme="pink"
-                        p="1" leftIcon={<Icon as={RiAddLine}/>}
+                        p="1" leftIcon={<Icon as={RiAddLine} fontSize="22"/>} 
                         >
                             Criar Novo
                         </Button>
@@ -30,6 +31,7 @@ export default function UserList() {
                                 </Th>
                                 <Th>Usuário</Th>
                                 <Th>Data de cadastro</Th>
+                                <Th width="8"></Th>
                             </Tr>
                         </Thead>
                         <Tbody>
@@ -44,10 +46,56 @@ export default function UserList() {
                                     </Box>
                                 </Td>
                                 <Td>05 de abril de 2022</Td>
-
+                                <Td>
+                                <Button as="a" size="sn" fontSize="sn" colorScheme="purple"
+                                    p="1" leftIcon={<Icon as={RiPencilLine} fontSize="15"/>}
+                                >
+                                  Editar
+                                </Button>
+                                </Td>
+                            </Tr>
+                            <Tr>
+                                <Td  px="6">
+                                    <Checkbox colorScheme="pink"/>
+                                </Td>
+                                <Td>
+                                    <Box>
+                                        <Text fontWeight="bold">Vinicius Ferreira</Text>
+                                        <Text fontSize="sm" color-="gray.300">vinicius.fg05@gmail.com</Text>
+                                    </Box>
+                                </Td>
+                                <Td>05 de abril de 2022</Td>
+                                <Td>
+                                <Button as="a" size="sn" fontSize="sn" colorScheme="purple"
+                                    p="1" leftIcon={<Icon as={RiPencilLine} fontSize="15"/>}
+                                >
+                                  Editar
+                                </Button>
+                                </Td>
+                            </Tr>
+                            <Tr>
+                                <Td  px="6">
+                                    <Checkbox colorScheme="pink"/>
+                                </Td>
+                                <Td>
+                                    <Box>
+                                        <Text fontWeight="bold">Vinicius Ferreira</Text>
+                                        <Text fontSize="sm" color-="gray.300">vinicius.fg05@gmail.com</Text>
+                                    </Box>
+                                </Td>
+                                <Td>05 de abril de 2022</Td>
+                                <Td>
+                                <Button as="a" size="sn" fontSize="sn" colorScheme="purple"
+                                    p="1" leftIcon={<Icon as={RiPencilLine} fontSize="15"/>}
+                                >
+                                  Editar
+                                </Button>
+                                </Td>
                             </Tr>
                         </Tbody>
                     </Table>
+
+                    <Pagination />
                 </Box>
             </Flex>
         </Box>
