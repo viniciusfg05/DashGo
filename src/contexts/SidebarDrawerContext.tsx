@@ -5,7 +5,7 @@ interface SidebarDrawerContextProps {
   children: ReactNode;
 }
 
-const SidebarDrawerContext = createContext();
+const SidebarDrawerContextf = createContext();
 
 export function SidebarDrawerContext({children}: SidebarDrawerContextProps) {
   const { getDisclosureProps } = useDisclosure()
