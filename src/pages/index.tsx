@@ -1,9 +1,18 @@
 import { Button, Flex, Stack, FormLabel, FormControl} from "@chakra-ui/react";
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { Input } from "../components/Form/Input";
+
+type SignInFormData = {
+  email: string;
+  password: string;
+}
 
 export default function SingIn() {
   const { register, handleSubmit } = useForm()
+
+  const handleSignIn: SubmitHandler<SignInFormData> = (value) => {
+    console.log(value)
+  }
 
   return (
     <Flex
@@ -20,12 +29,13 @@ export default function SingIn() {
         borderRadius={8}
         flexDir="column"
         p="8"
+        onSubmit={handleSubmit(handleSignIn)}
       >
         
         <Stack spacing={4}> 
 
-          <Input name="email" type="email" label="E-mail" />
-          <Input name="password" type="password" label="Senha" />
+          <Input name="email" type="email" label="E-mail" {...register('email')} />
+          <Input name="password" type="password" label="Senha" {...register('password')} />
 
         </Stack>
 
