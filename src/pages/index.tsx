@@ -1,7 +1,10 @@
 import { Button, Flex, Stack, FormLabel, FormControl} from "@chakra-ui/react";
+import { useForm } from 'react-hook-form'
 import { Input } from "../components/Form/Input";
 
 export default function SingIn() {
+  const { register, handleSubmit } = useForm()
+
   return (
     <Flex
       w="100vw"
