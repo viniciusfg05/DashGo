@@ -15,7 +15,7 @@ type SignInFormData = {
 //Criando um schema de validação
 const signInFormSchema = yup.object().shape({
   email: yup.string().required('Informe um email').email('Email inválido'),
-  password: yup.string().required('Informe uma senha'),
+  password: yup.string().required('Informe uma senha'), 
 }) 
 
 export default function SingIn() {
@@ -24,7 +24,9 @@ export default function SingIn() {
   })
   console.log(errors)
 
-  const handleSignIn: SubmitHandler<SignInFormData> = (value) => {
+  const handleSignIn: SubmitHandler<SignInFormData> = async (value) => {
+    await new Promise(resolver => setTimeout(resolver, 2000))
+
     console.log(value)
   }
 
@@ -53,7 +55,7 @@ export default function SingIn() {
 
         </Stack>
 
-        <Button type="submit" colorScheme="pink" mt="6" size="lg" >
+        <Button type="submit" colorScheme="pink" mt="6" size="lg" isLoading={isSubmitted}>
           Entrar
         </Button>
       </Flex>
