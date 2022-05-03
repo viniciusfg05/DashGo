@@ -6,7 +6,7 @@ export function Logo() {
   <Text
     fontSize={["2xl", "3xl"]}
     fontWeight="bold"
-    letter-spacing="tight" //deixa as fonts um pouco mais grudadas
+    letterSpacing="tight" //deixa as fonts um pouco mais grudadas
     w="64"
   >
     DashGo
