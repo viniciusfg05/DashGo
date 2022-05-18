@@ -6,12 +6,12 @@ import { AuthContext } from '../contexts/AuthContext'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { api } from "../services/api";
 
 type SignInFormData = {
   email: string;
   password: string;
-  error: FieldError;
 }
 
 
@@ -22,10 +22,12 @@ const signInFormSchema = yup.object().shape({
 }) 
 
 export default function SingIn() {
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
+
   const { register, handleSubmit, formState: {errors, isSubmitted},  } = useForm({
     resolver: yupResolver(signInFormSchema)
   })
-  console.log(errors)
   
   const { signIn } = useContext(AuthContext)
   
@@ -33,8 +35,22 @@ export default function SingIn() {
   const handleSignIn: SubmitHandler<SignInFormData> = async (value) => {
     await new Promise(resolver => setTimeout(resolver, 2000))
 
-    signIn(value)
+    setEmail(value.email)
+    setPassword(value.password)
+
+    // const data = {
+    //   email,
+    //   password,
+    // }
+
+
+    await signIn(value)
   }
+
+  useEffect(() => {
+    const response = api.post('sessions')
+    console.log(response)
+  }, [])
 
   return (
     <Flex
@@ -56,12 +72,12 @@ export default function SingIn() {
         
         <Stack spacing={4}> 
 
-          <Input name="email" type="email" label="E-mail" error={errors.email} {...register('email')} />
+          <Input name="email" type="email" label="E-mail" error={errors.email} {...register('email')}/>
           <Input name="password" type="password" label="Senha" error={errors.password} {...register('password')} />
 
         </Stack>
 
-        <Button type="submit" colorScheme="pink" mt="6" size="lg" isLoading={isSubmitted}>
+        <Button type="submit" colorScheme="pink" mt="6" size="lg">
           Entrar
         </Button>
       </Flex>

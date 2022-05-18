@@ -1,9 +1,16 @@
-import { createContext, ReactNode } from "react";
+import Router from "next/router";
+import { createContext, ReactNode, useState } from "react";
 import { api } from "../services/api";
 
-interface SignInCredentials {
+interface User {
     email: string;
-    password: string;
+    permissions: string[];
+    roles: string[];
+}
+
+interface SignInCredentials {
+    email?: string;
+    password?: string;
 }
 
 interface AuthContextData {
@@ -18,19 +25,25 @@ interface  AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
+    const [ user, setUser ] = useState<User>()
     const isAuthenticated = false
 
     async function signIn({ email, password }: SignInCredentials) {
-        try {
-            const response = await api.post('sessions', {
-                email,
-                password
-            })
+        console.log('oii')
+        // console.log(email, password)
+        const response = await api.get('me')
+        console.log(response.data)
+
+            // const { permissions, roles } = response.data
     
-            console.log(response)
-        } catch (err) {
-            console.log(err);
-        }
+            // setUser({
+            //     email,
+            //     permissions,
+            //     roles
+            // })
+
+
+            console.log(user)
     }
 
     return (

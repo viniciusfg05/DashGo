@@ -55,7 +55,6 @@ export function makeServer() {
                 )
             })
             this.post('/users')
-            this.post('/sessions')
 
             this.namespace = ''; // para não prejudica a rotas "api" do next -> ../pages/api/rota
             this.passthrough('http://localhost:5555/**') // todas as api passa pelo mirage e se não forem detectadas, passem adiante para rota original
