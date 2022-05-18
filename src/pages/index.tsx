@@ -35,15 +35,6 @@ export default function SingIn() {
   const handleSignIn: SubmitHandler<SignInFormData> = async (value) => {
     await new Promise(resolver => setTimeout(resolver, 2000))
 
-    setEmail(value.email)
-    setPassword(value.password)
-
-    // const data = {
-    //   email,
-    //   password,
-    // }
-
-
     await signIn(value)
   }
 
