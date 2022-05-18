@@ -2,15 +2,18 @@ import { Button, Flex, Stack, FormLabel, FormControl} from "@chakra-ui/react";
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Input } from "../components/Form/Input";
 import { FieldError } from 'react-hook-form'
+import { AuthContext } from '../contexts/AuthContext'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { useContext } from "react";
 
 type SignInFormData = {
   email: string;
   password: string;
   error: FieldError;
 }
+
 
 //Criando um schema de validação
 const signInFormSchema = yup.object().shape({
@@ -23,11 +26,14 @@ export default function SingIn() {
     resolver: yupResolver(signInFormSchema)
   })
   console.log(errors)
+  
+  const { signIn } = useContext(AuthContext)
+  
 
   const handleSignIn: SubmitHandler<SignInFormData> = async (value) => {
     await new Promise(resolver => setTimeout(resolver, 2000))
 
-    console.log(value)
+    signIn(value)
   }
 
   return (
@@ -62,4 +68,5 @@ export default function SingIn() {
     </Flex>
   )
 }
+
  

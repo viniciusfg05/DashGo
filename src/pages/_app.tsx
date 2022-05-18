@@ -5,6 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { chakraConfigTheme } from '../styles/chakraConfigTheme'
 import { SidebarDrawerProvider } from '../contexts/SidebarDrawerContext'
 import { makeServer } from '../services/mirage'
+import { AuthProvider } from '../contexts/AuthContext'
 
 //verifica é um ambiente de development
 if (process.env.NODE_ENV === "development") {
@@ -15,15 +16,17 @@ const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <SidebarDrawerProvider>
-        <ChakraProvider theme={chakraConfigTheme}> 
-          <Component {...pageProps} />
-        </ChakraProvider>
-      </SidebarDrawerProvider>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <SidebarDrawerProvider>
+          <ChakraProvider theme={chakraConfigTheme}> 
+            <Component {...pageProps} />
+          </ChakraProvider>
+        </SidebarDrawerProvider>
 
-      <ReactQueryDevtools/>
-    </QueryClientProvider>
+        <ReactQueryDevtools/>
+      </QueryClientProvider>
+    </AuthProvider>
 
   )
 }
